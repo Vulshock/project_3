@@ -18,14 +18,16 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return (
-        f"Gun Violence Visualization<br/>"
-        f"<a href='static/bindex.html'>map</a><br/>"
-        f"<a href='static/index_gva.html'>state_incident_arrests</a><br/>"
-        f"<a href='static/index_gvk.html'>state_incident_killed</a><br/>"
-        f"<a href='static/tt_index.html'>age</a><br/>"
-        f"<a href='static/vindex.html'>city_gun_sale</a><br/>"
-)
+    return render_template("index.html")
+
+    # (
+        # f"Gun Violence Visualization<br/>"
+        # f"<a href='static/bindex.html'>map</a><br/>"
+        # f"<a href='static/index_gva.html'>state_incident_arrests</a><br/>"
+        # f"<a href='static/index_gvk.html'>state_incident_killed</a><br/>"
+        # f"<a href='static/tt_index.html'>age</a><br/>"
+        # f"<a href='static/vindex.html'>city_gun_sale</a><br/>"
+# )
 
 
 @app.route("/<column>")

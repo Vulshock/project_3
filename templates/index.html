@@ -1,12 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="../static/css/d3Style.css">
+        <style>
+            h1{
+                font-size:30px;
+                color:rgb(255, 47, 0);
+            }
+            #sidebar{
+                float:left}
+            #theme_white{
+                background-color:black}
+            #theme_grey{
+                background-color:rgb(255, 47, 0)}
+            
+        </style>
+        <title>The Prevalence of Gun Violence in the United States </title>
+        
+    </head>
+
+    <body>
+    
+    <div id=theme_grey>    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12", id=theme_white>
+                <div class="col-md-12", id=theme_white>
+                    <h1>The Prevalence of Gun Violence in the United States</h1>  
+
+                   
+                <hr>
+                    <a target="_blank" href="https://images.app.goo.gl/AGgsAtbFG8oy94YLA">
+                        <img src="../static/Resources/Prevent_gun_violence.jpg" alt="Gun Violence" width="200">
+                    </a>
+                    <a target="_blank" href='../static/tt_index.html'>
+                        <img src="../static/Resources/age_group.jpg" alt="Age Group" width="200">
+                    </a>
+                </div>      
+                <div>
+                    <div id=svg>
+                    </div>
+                    <div id=slider>
+                    </div>
+                    
+                </div>        
+            </div>
+            <div class="col-md-12", id=theme_white>
+                <select id="selDataset" onchange="optionChanged(this.value)" ></select>
+                    <div id="sbar">
+                    </div>
+            </div>
+            <div class="col-md-6", id=theme_white>
+                    <div id="cbar"></div>
+            </div>
+            <div class="col-md-6", id=theme_white>
+                <div id="gunbar"></div>
+            </div>
+                
+            </div>
+            <div class="col-md-12", id=theme_white>
+                <div class="GV_k"></div>
+                <div class="GV_a"></div>
+            </div>
+            
+        </div>        
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+   
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-    <script src="{{url_for('static',filename='logic.js')}}"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js'></script>
+    <script type="module" src="../static/js/map.js"></script>
+    <script type="module" src="../static/js/appgvarrest.js"></script>
+    <script type="module" src="../static/js/vlogic.js"></script>
+    
 </body>
+</div> 
 </html>
