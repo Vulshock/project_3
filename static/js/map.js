@@ -1,4 +1,3 @@
-
 const svgWidth = 975;
 const svgHeight = 610;
 
@@ -11,33 +10,26 @@ const chartMargin = {
 
 const chartWidth = svgWidth - chartMargin.left - chartMargin.right;
 const chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
-
-const zoom = d3.zoom()
-      .scaleExtent([1, 8])
       
 const svg = d3.selectAll('#svg')
     .append('svg')
     .classed('viewBox', true)
     .attr('height', svgHeight)
     .attr('width', svgWidth)
-    // .on('click', reset)
 
-// const topoJson = ['static/data/comboTopo.json']
 
+
+// Scaler variables
 const projection = d3.geoAlbersUsa().scale(1300).translate([svgWidth / 2, svgHeight / 2])
-// .translate([487.5, 305]);
-const path = d3.geoPath(projection)
-
 const colorScale = d3.scaleSequentialSqrt(d3.interpolateTurbo).domain([0,4000])
-
 const radius = d3.scaleSqrt().domain([0,1683]).range([0,10]);
 
-d3.json("data/comboTopo.json").then(function(data) {
+const path = d3.geoPath(projection)
 
-    let test = data.objects.states.geometries;
-    console.log(d3.extent(test, d => d.properties.INCIDENTS))
+
+
+d3.json("../static/data/comboTopo.json").then(function(data) {
     
-
     const countiesMap = svg.append('g').classed('map-container', true)
     
     countiesMap.selectAll('.map')
@@ -51,7 +43,6 @@ d3.json("data/comboTopo.json").then(function(data) {
         .attr('stroke-linejoin', 'round')
         .attr('d', path)
         .attr('cursor', 'pointer')
-        // .on('mouseover', clicked)
 
     const incidents = svg.append('g').classed('incidents-container', true)
 
@@ -68,41 +59,6 @@ d3.json("data/comboTopo.json").then(function(data) {
     const legend = svg.append('g').classed('legend-container', true)
         .attr('transform', 'translate(740,60)')
 
-    legend.selectAll('.legend')
-        .data([0,8000, 1200, 1683])
-        .join('circle')
-        .attr('cy', d => -radius(d) * 2)
-        .attr('r', radius)
-        .attr('fill', 'none')
-        .attr('stroke', 'black')
-    
-    legend.append('text')
-        .attr('y', d => -2 * radius(d))
-        .attr('dy', '1.3em')
-        .text(data)    
-})
+    const sliderBox = svg.append('g').classed('slider-box', true)
 
-// function reset() {
-//     svg.transition().duration(750).call(
-//       zoom.transform,
-//       d3.zoomIdentity,
-//       d3.zoomTransform(svg.node()).invert([svgWidth / 2, svgHeight / 2])
-//     );
-//   }
-//   function clicked(d) {
-//     const [[x0, y0], [x1, y1]] = path.bounds(d);
-//     d3.event.stopPropagation();
-//     svg.transition().duration(1000).call(
-//       zoom.transform,
-//       d3.zoomIdentity
-//         .translate(svgWidth / 2, svgHeight / 2)
-//         .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / svgWidth, (y1 - y0) / svgHeight)))
-//         .translate(-(x0 + x1) / 2, -(y0 + y1) / 2),
-//       d3.mouse(svg.node())
-//     );
-//   }
-//   function zoomed() {
-//     const {transform} = d3.event;
-//     map.attr("transform", transform);
-//     map.attr("stroke-width", 1 / transform.k);
-//   }
+})

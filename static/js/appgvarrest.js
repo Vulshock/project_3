@@ -40,7 +40,7 @@ var chartGroup = svg.append("g")
   svg.call(toolTip);
 
 // d3.json("../resource/gvdata.json", function(gvData, err) {
-d3.json("data/all.json").then(function(gvData) {
+d3.json("../static/data/all.json").then(function(gvData) {
   console.log('hi');
   console.log(gvData);
   //if (err) throw err;

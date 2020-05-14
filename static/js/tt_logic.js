@@ -20,7 +20,6 @@ var z = d3.scaleOrdinal()
 
 d3.json('data/all.json').then(function(data){
 	console.log(data);
-	console.log("javascript is loaded");
 	var result=[];
 
 	// Group By State

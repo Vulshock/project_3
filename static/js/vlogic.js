@@ -6,25 +6,28 @@ let gundata
     
 // })
 
-d3.json("data/df_gvdata.json").then(function(data){
+d3.json("../static/data/df_gvdata.json").then(function(data){
     console.log(data)
     ydata=data
     init()
     createMenu()
 })
+
 d3.select("selDataset").on("change", optionChanged) 
-d3.json("data/gvdata_city.json").then(function(data){
+
+d3.json("../static/data/gvdata_city.json").then(function(data){
     citydata=data
     initCity()
 })
-d3.json("data/num_firarms.json").then(function(data){
+d3.json("../static/data/num_firarms.json").then(function(data){
     gundata=data
     gunGraph()
     console.log(gundata)
 })
 function gunGraph(){
-    fiscal_years=gundata.Fiscal_Year;
-    Firearms_Processed=gundata.Firearms_Processed
+    var fiscal_years=gundata.Fiscal_Year;
+    console.log(fiscal_years)
+    var Firearms_Processed=gundata.Firearms_Processed
     var years=[]
     var num_arms=[]
     Object.values(fiscal_years).forEach(value=>{
@@ -52,26 +55,26 @@ function gunGraph(){
     }
     gun_init_graph() 
 }
-d3.json("static/data/gun_own_by_state.json").then(function(data){
-    dataset=data.data
-    console.log(dataset)
-    var state=[]
-    var gunOwnership=[]
-    var pop=[]
-    var totalGuns=[]
-    for (var i=0; i<dataset.length; i++){
-        state.push(dataset[i].State)
-        pop.push(dataset[i].Pop)
-        gunOwnership.push(dataset[i].gunOwnership)
-        totalGuns.push(dataset[i].totalGuns)
-    }
-    console.log(state)
-    console.log(pop)
-    console.log(gunOwnership)
-    console.log(totalGuns)
-    // title: "By 2020, Gun Ownership By State by Population 2020",
+// d3.json("static/data/gun_own_by_state.json").then(function(data){
+//     dataset=data.data
+//     console.log(dataset)
+//     var state=[]
+//     var gunOwnership=[]
+//     var pop=[]
+//     var totalGuns=[]
+//     for (var i=0; i<dataset.length; i++){
+//         state.push(dataset[i].State)
+//         pop.push(dataset[i].Pop)
+//         gunOwnership.push(dataset[i].gunOwnership)
+//         totalGuns.push(dataset[i].totalGuns)
+//     }
+//     console.log(state)
+//     console.log(pop)
+//     console.log(gunOwnership)
+//     console.log(totalGuns)
+//     // title: "By 2020, Gun Ownership By State by Population 2020",
     
-})
+// })
 function optionChanged(){
     var selectValue=d3.select("#selDataset").property("value")
         console.log(selectValue)
@@ -99,11 +102,14 @@ function initCity(){
         x:city_arr,
         y:killed_arr,
         name: 'ppl killed',
+        marker: {
+            color: 'rgb(158,202,225)'
+        },
         type: "bar" 
         }]
     
     var layout_in_city={
-        title: `Gun Violence in Year 2013: City Vs. Numbers of People got Killed `,
+        title: `GV in Year 2013: City Vs. # of People got Killed `,
         xaxis:{title:{ text:`City`}},
         showlegend: false
     }
@@ -127,7 +133,7 @@ function updateCity(selectValue){
         }]
    
     var layout_city={
-        title: `Gun Violence in Year ${selectValue}: City Vs. Numbers of People got Killed `,
+        title: `GV in Year ${selectValue}: City Vs. # of People got Killed `,
         xaxis:{title:{ text:`City`}},
         showlegend: false
     }
